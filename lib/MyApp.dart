@@ -14,6 +14,14 @@ class MyApp extends StatelessWidget {
       title: 'jehad',
       debugShowCheckedModeBanner: false,
       home:  Home(),
+      routes: {
+        '/page1': (context) => history(),
+        '/page2': (context) => listte(),
+        '/page3': (context) => history(),
+        '/page4': (context) => listte(),
+        '/page5': (context) => history(),
+        '/page6': (context) => listte(),
+      },
     );
   }
 }
@@ -125,37 +133,36 @@ class _HomeState extends State<Home> {
                   mainAxisSpacing: 1),
                 itemCount: picture.length,
                 itemBuilder: (context,index){
-                  return Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: SizedBox(
-                      height: 20,
-                      child: Container(
-                        width: 20,
-                        height:20,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black26,
-                              spreadRadius: 1,
-                              blurRadius: 6,
+                  return GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, '/page${index + 1}');
+                    },
+                    child: Container(
+                      width: 20,
+                      height:20,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            spreadRadius: 1,
+                            blurRadius: 6,
 
-                            ),
-                          ],
-
-
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Image.asset(picture[index],width: 50,),
-                            Text(name[index],style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
-                          ],
-                        ),
+                          ),
+                        ],
 
 
                       ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Image.asset(picture[index],width: 50,),
+                          Text(name[index],style: TextStyle(fontSize: 17,fontWeight: FontWeight.bold),),
+                        ],
+                      ),
+
+
                     ),
                   );
                 },
